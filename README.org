@@ -3,7 +3,6 @@
 
   The improved version of batsignal (The battery monitor). The original project is [[https://github.com/electrickite/batsignal][here]].
   This is a simple battery monitor that provides notifications for battery events.
-  The configuration is done by editing the main ~batsignal.c~ file.
 
   This is intended to use with minimal window managers like XMonad , SpectreWM , qtile etc.
 
@@ -26,6 +25,7 @@ batsignal
 exec xmonad
    #+end_src
 
+   See ~man batsignal~ for more details.
 ** Prerequisites
    The following software are needed to compile and build.
    - A standard C compiler
@@ -57,6 +57,38 @@ sudo make install
    Features that are planned are
    - Config file support
 
+** Configuration
+   Configuration can be done using ~batsignal.c~ file. The file has variables that can be edited for custom configuration
+
+   These can be edited for configuration. Remember to compile and install again when edited.
+   #+begin_src C
+static unsigned char daemonize = 0;
+static unsigned char battery_required = 1;
+static unsigned char battery_name_specified = 0;
+
+/* battery information */
+static char *battery_name = "BAT0";
+static unsigned char battery_discharging = 0;
+static unsigned char battery_state = STATE_AC;
+static unsigned int battery_level = 100;
+static char *attr_path;
+
+/* check frequency multiplier (seconds) */
+static unsigned int multiplier = 60;
+
+/* battery warning levels */
+static unsigned int warning = 15;
+static unsigned int critical = 5;
+static unsigned int danger = 2;
+static unsigned int full = 75;
+
+/* messages for battery levels */
+static char *warningmsg = "Battery is low";
+static char *criticalmsg = "Battery is critically low";
+static char *fullmsg = "Battery is full";
+static char *disconnectedmsg = "Charging Disconnected";
+static char *connectedmsg = "Charging Connected";
+   #+end_src
    
 ** Contributing
    Pull requests are welcome. For features requests and bug reports open a [[https://github.com/pspiagicw/batsignal-improved/issues][issue]].
