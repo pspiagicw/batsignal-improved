@@ -4,8 +4,8 @@ NAME = batsignal
 
 VERSION = $(shell grep VERSION version.h | cut -d \" -f2)
 
-PREFIX = ~/.config
-MANPREFIX = ~/.local/share/man
+PREFIX = /usr
+MANPREFIX = /usr/share/man
 
 CFLAGS_EXTRA = -pedantic -Wall -Wextra -Werror -Wno-unused-parameter -Os -s
 CFLAGS := $(CFLAGS_EXTRA) $(CFLAGS) -std=c99 $(shell pkg-config --cflags libnotify)

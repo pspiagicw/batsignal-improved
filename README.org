@@ -1,0 +1,73 @@
+#+title: Batsignal
+#+author: pspiagicw
+
+* Batsignal
+  The improved version of batsignal (The battery monitor). The original project is [[https://github.com/electrickite/batsignal][here]].
+  This is a simple battery monitor that provides notifications for battery events.
+  The configuration is done by editing the main ~batsignal.c~ file.
+
+  This is intended to use with minimal window managers like XMonad , SpectreWM , qtile etc.
+
+  It raises notification using the ~libnotify~ method (~notify-send~).This requires a
+  notification daemon running in the background . A common one is ~dunst~
+
+  Currently only Linux is supported.
+  
+** Usage
+   Start batsignal using the command
+   #+begin_src shell
+batsignal
+   #+end_src
+
+   Put it in your ~~/.xinitrc~ to autostart before your window manager.
+   #+begin_src shell
+# Battery Monitor
+batsignal
+#Window Manager
+exec xmonad
+   #+end_src
+
+** Prerequisites
+   The following software are needed to compile and build.
+   - A standard C compiler
+   - libnotify
+   - make
+   - pkg-config
+     
+** Installation
+   Building the package is done using make.
+   #+begin_src shell
+make
+   #+end_src
+
+
+   This produces a ~batsignal~ binary. Either move this to a directory existing in $PATH. Or use ~sudo make install~
+   to install in ~/usr/bin/~.
+
+   #+begin_src shell
+sudo make install
+   #+end_src
+
+   
+** Features
+   This fork adds multiple features like
+   - Detecting whether battery is in charging , discharging .
+   - Detect events like charging attach , charging removed.
+   - Multiple Icons for different events
+
+   Features that are planned are
+   - Config file support
+T
+
+   
+** Contributing
+   Pull requests are welcome. For features requests and bug reports open a [[https://github.com/pspiagicw/batsignal-improved/issues][issue]].
+
+** Motivation
+   This was my personal copy with my modifications on batsignal. I though of releasing it on GitHub and thus this project was born.
+
+   
+** License
+
+   This project uses the [[https://opensource.org/licenses/MIT][MIT License]].
+
