@@ -1,7 +1,6 @@
 #+title: Batsignal
 #+author: pspiagicw
 
-* Batsignal
   The improved version of batsignal (The battery monitor). The original project is [[https://github.com/electrickite/batsignal][here]].
   This is a simple battery monitor that provides notifications for battery events.
   The configuration is done by editing the main ~batsignal.c~ file.
@@ -57,7 +56,6 @@ sudo make install
 
    Features that are planned are
    - Config file support
-T
 
    
 ** Contributing
