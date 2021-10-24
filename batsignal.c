@@ -65,8 +65,11 @@ static char *fullmsg = "Battery is full";
 static char *disconnectedmsg = "Charging Disconnected";
 static char *connectedmsg = "Charging Connected";
 
+
 /* run this system command if battery reaches danger level */
 static char *dangercmd = "";
+static char *lowcmd = "xbackglight -set 20";
+static char *connectedcmd = "xbacklight -set 40";
 
 /* app name for notification */
 static char *appname = PROGNAME;
@@ -353,6 +356,8 @@ int main(int argc, char *argv[])
         if (battery_state != STATE_WARNING) {
           battery_state = STATE_WARNING;
           notify(warningmsg, NOTIFY_URGENCY_NORMAL,lowicon);
+	  if (lowcmd[0] != '\0')
+	    if (system(lowcmd) == -1) { /* Ignore command errors... */ }
         }
 
       } else {
@@ -364,6 +369,8 @@ int main(int argc, char *argv[])
         battery_state = STATE_AC;
 	if (charging_or_not == 0) {
 	  notify(connectedmsg , NOTIFY_URGENCY_NORMAL,charicon);
+	  if (connectedcmd[0] != '\0')
+	    if (system(connectedcmd) == -1) { /* Ignore command errors... */ }
 	}
 	charging_or_not = 1;
         if (full && battery_level >= full && battery_state != STATE_FULL) {
