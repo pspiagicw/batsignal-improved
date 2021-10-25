@@ -17,10 +17,15 @@
 batsignal
    #+end_src
 
+   Start in the the background using
+   #+begin_src sql
+batsignal -b
+   #+end_src
+
    Put it in your ~~/.xinitrc~ to autostart before your window manager.
    #+begin_src shell
 # Battery Monitor
-batsignal
+batsignal -b
 #Window Manager
 exec xmonad
    #+end_src
@@ -52,10 +57,9 @@ sudo make install
    This fork adds multiple features like
    - Detecting whether battery is in charging , discharging .
    - Detect events like charging attach , charging removed.
-   - Multiple Icons for different events
+   - Multiple Icons for different events.
+   - Run custom commands at events (Low charge , Danger Charge , Charging connected).
 
-   Features that are planned are
-   - Config file support
 
 ** Configuration
    Configuration can be done using ~batsignal.c~ file. The file has variables that can be edited for custom configuration
@@ -88,16 +92,17 @@ static char *criticalmsg = "Battery is critically low";
 static char *fullmsg = "Battery is full";
 static char *disconnectedmsg = "Charging Disconnected";
 static char *connectedmsg = "Charging Connected";
+
+static char *dangercmd = "";
+static char *lowcmd = "xbackglight -set 20";
+static char *connectedcmd = "xbacklight -set 40";
+
    #+end_src
    
 ** Contributing
    Pull requests are welcome. For features requests and bug reports open a [[https://github.com/pspiagicw/batsignal-improved/issues][issue]].
-
 ** Motivation
    This was my personal copy with my modifications on batsignal. I though of releasing it on GitHub and thus this project was born.
-
-   
 ** License
-
    This project uses the [[https://opensource.org/licenses/MIT][MIT License]].
 
